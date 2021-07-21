@@ -1,8 +1,6 @@
 package foo.bar.qix.wemanity.service;
 
-import org.springframework.stereotype.Service;
+public interface ComputeService {
 
-@Service
-public class ComputeService {
-
+	String compute(String input);
 }

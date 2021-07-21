@@ -7,14 +7,14 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import foo.bar.qix.wemanity.service.ComputeService;
+import foo.bar.qix.wemanity.service.ComputeServiceImpl;
 
 @RestController
 @RequestMapping("compute")
 public class ComputeController {
 	
 	@Autowired
-	private ComputeService computeService;
+	private ComputeServiceImpl computeService;
 	
 	/**
 	 * 
