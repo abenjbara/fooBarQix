@@ -2,6 +2,8 @@ package foo.bar.qix.wemanity.service;
 
 import org.springframework.stereotype.Service;
 
+import foo.bar.qix.wemanity.utils.Constants;
+
 @Service
 public class ComputeServiceImpl implements ComputeService {
 
@@ -13,7 +15,7 @@ public class ComputeServiceImpl implements ComputeService {
 		int number = Integer.valueOf(input);
 		
 		if(number % 3 == ZERO) {
-			output.append("Foo");
+			output.append(Constants.FOO);
 		}
 		
 		return output.toString();
