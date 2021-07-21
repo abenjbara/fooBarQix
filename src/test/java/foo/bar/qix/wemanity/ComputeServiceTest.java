@@ -15,15 +15,16 @@ public class ComputeServiceTest {
 	private ComputeService computeService;
 	
 	@Test
-	public void sould_write_the_same_number_when_its_not_devisible_by_3_5_or_7(){
+	public void sould_write_foo_when_the_number_is_devisible_by_3(){
 		// given
-		String input = "1";
+		String input = "3";
 		
 		// when
 		String output = computeService.compute(input);
 		
 		//then
-		assertThat(output).isEqualTo(input);		
+		assertThat(output).contains("Foo");
+		
 	}
 
 }
