@@ -32,6 +32,7 @@ public class ComputeServiceImpl implements ComputeService {
 		}
 		if(number % SEVEN == ZERO) {
 			output.append(Constants.QIX);
+			listDetails.add(Constants.DIVISIBLE + 7);
 		}
 		
 		listDetails.addAll(this.calculateOccurrence(input));
