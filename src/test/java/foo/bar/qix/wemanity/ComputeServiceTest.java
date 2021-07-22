@@ -36,4 +36,10 @@ public class ComputeServiceTest {
 		assertThat(output).contains(Constants.CONTAINS + input);
 	}
 
+	@Test
+	public void sould_write_bar_when_the_number_is_devisible_by_5(){
+		String input = "5";
+		String output = computeService.compute(input);
+		assertThat(output).contains(Constants.BAR);		
+	}
 }
