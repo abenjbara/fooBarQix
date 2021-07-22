@@ -54,6 +54,11 @@ public class ComputeServiceTest {
 		assertThat(output).contains(Constants.BAR);		
 	}
 	
-	
+	@Test
+	public void should_write_qix_when_the_number_is_devisible_by_7() {
+		String input = "7";
+		String output = computeService.compute(input);
+		assertThat(output).contains(Constants.QIX);
+	}
 	
 }
