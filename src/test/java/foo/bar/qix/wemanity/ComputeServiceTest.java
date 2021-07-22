@@ -32,8 +32,8 @@ public class ComputeServiceTest {
 		String input = "3";
 		String output = computeService.compute(input);
 		
-		assertThat(output).contains("divisible by 3");
-		assertThat(output).contains("contains 3");
+		assertThat(output).contains(Constants.DEVISIBLE + input);
+		assertThat(output).contains(Constants.CONTAINS + input);
 	}
 
 }

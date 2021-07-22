@@ -23,7 +23,7 @@ public class ComputeController {
 	 */
 	@GetMapping("/{input}")
 	public ResponseEntity<String> compute(@PathVariable String input){
-		return ResponseEntity.ok("Structure bien mise en place");
-		
+		String output = computeService.compute(input);
+		return ResponseEntity.ok(output);		
 	}
 }

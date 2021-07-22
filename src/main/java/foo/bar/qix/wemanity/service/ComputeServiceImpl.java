@@ -13,9 +13,7 @@ public class ComputeServiceImpl implements ComputeService {
 
 	private static final int ZERO = 0;
 
-	/**
-	 * 
-	 */
+
 	@Override
 	public String compute(String input) {
 		StringBuilder output = new StringBuilder();
@@ -24,7 +22,7 @@ public class ComputeServiceImpl implements ComputeService {
 		
 		if(number % 3 == ZERO) {
 			output.append(Constants.FOO);
-			listDetails.add("divisible by " + number);
+			listDetails.add(Constants.DEVISIBLE + 3);
 			listDetails.add(calculateOccurrence(input, "3"));
 		}
 		
@@ -38,28 +36,31 @@ public class ComputeServiceImpl implements ComputeService {
 	 * @param reference
 	 * @return le nombre d'occurences dans une chaine de caractères
 	 */
-    public String calculateOccurrence(String input, String reference) {
+    private String calculateOccurrence(String input, String reference) {
     	long count = StringUtils.countOccurrencesOf(input, reference);
-		//long count = input.chars().filter(ch -> ch == (char) reference).count();
-		String countString = count > 1 ? String.valueOf(count) : "";
-		return  count > 0 ? "contains " + countString + reference : "";
+		String countString = count > 1 ? count + " " : "";
+		return  count > 0 ? Constants.CONTAINS + countString + reference : "";
 	}
 
     /**
      * Construit le output a partir d'une liste de String
      * @param listDetails
-     * @return
      */
-	public String BuildDetails(List<String> listDetails) {
+	private String BuildDetails(List<String> listDetails) {
 		StringBuilder details = new StringBuilder();
-		details.append("(");
-		for(String d: listDetails) {
-			if(!d.isEmpty()) {
-				details.append(d + ",");
-			}
-		}
 		
-		details.append(")");
+		if(!listDetails.isEmpty()) {
+			details.append("(");
+			for(String d: listDetails) {
+				if(!d.isEmpty()) {
+					details.append(d + ",");
+				}
+			}
+			
+			details.deleteCharAt(details.length() -1); // suppression de la derniere virgule
+			
+			details.append(")");
+		}
 		return details.toString();
 	}
 	
