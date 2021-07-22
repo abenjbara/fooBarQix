@@ -44,7 +44,8 @@ public class ComputeServiceImpl implements ComputeService {
 	 * @param reference
 	 * @return le nombre d'occurences dans une chaine de caractères
 	 */
-    private List<String> calculateOccurrence(String input) {
+	@Override
+    public List<String> calculateOccurrence(String input) {
     	List<String> recurrences = new ArrayList<>();
     	int[] nums = {THREE,FIVE};
     	for(int n: nums) {

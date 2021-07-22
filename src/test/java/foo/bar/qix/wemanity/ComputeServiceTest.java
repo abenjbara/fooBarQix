@@ -2,6 +2,8 @@ package foo.bar.qix.wemanity;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import java.util.List;
+
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,7 +35,16 @@ public class ComputeServiceTest {
 		String output = computeService.compute(input);
 		
 		assertThat(output).contains(Constants.DEVISIBLE + input);
-		assertThat(output).contains(Constants.CONTAINS + input);
+	}
+	
+	@Test
+	public void should_calculate_recurrence() {
+		String input = "563";
+		List<String> recurences = computeService.calculateOccurrence(input);
+		
+		assertThat(recurences).isNotEmpty();
+		assertThat(recurences.size()).isEqualTo(2);
+		assertThat(recurences.get(0)).isEqualTo(Constants.CONTAINS + 3);
 	}
 
 	@Test
@@ -42,4 +53,7 @@ public class ComputeServiceTest {
 		String output = computeService.compute(input);
 		assertThat(output).contains(Constants.BAR);		
 	}
+	
+	
+	
 }

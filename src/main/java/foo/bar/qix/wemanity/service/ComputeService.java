@@ -1,5 +1,7 @@
 package foo.bar.qix.wemanity.service;
 
+import java.util.List;
+
 public interface ComputeService {
 
 	/**
@@ -8,5 +10,12 @@ public interface ComputeService {
 	 * @return une chaine de caractère en fonction du input
 	 */
 	String compute(String input);
+
+	/**
+	 * @param input
+	 * @param reference
+	 * @return le nombre d'occurences dans une chaine de caractères
+	 */
+	List<String> calculateOccurrence(String input);
 
 }
