@@ -14,7 +14,8 @@ public class ComputeServiceImpl implements ComputeService {
 	private static final int ZERO = 0;
 	private static final int THREE = 3;
 	private static final int FIVE = 5;
-
+	private static final int SEVEN = 7;
+	
 	@Override
 	public String compute(String input) {
 		StringBuilder output = new StringBuilder();
@@ -24,14 +25,15 @@ public class ComputeServiceImpl implements ComputeService {
 		if(number % THREE == ZERO) {
 			output.append(Constants.FOO);
 			listDetails.add(Constants.DEVISIBLE + 3);
-	//		listDetails.add(calculateOccurrence(input, "3"));
 		}
 		if(number % FIVE == ZERO) {
 			output.append(Constants.BAR);
 			listDetails.add(Constants.DEVISIBLE + 5);
-	//		listDetails.add(calculateOccurrence(input, "5"));
 		}
-				
+		if(number % SEVEN == ZERO) {
+			output.append(Constants.QIX);
+		}
+		
 		listDetails.addAll(this.calculateOccurrence(input));
 		
 		String result =  output.append(BuildDetails(listDetails)).toString();
