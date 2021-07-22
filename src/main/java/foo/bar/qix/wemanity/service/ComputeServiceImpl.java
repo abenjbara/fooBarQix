@@ -24,11 +24,11 @@ public class ComputeServiceImpl implements ComputeService {
 		
 		if(number % THREE == ZERO) {
 			output.append(Constants.FOO);
-			listDetails.add(Constants.DEVISIBLE + 3);
+			listDetails.add(Constants.DIVISIBLE + 3);
 		}
 		if(number % FIVE == ZERO) {
 			output.append(Constants.BAR);
-			listDetails.add(Constants.DEVISIBLE + 5);
+			listDetails.add(Constants.DIVISIBLE + 5);
 		}
 		if(number % SEVEN == ZERO) {
 			output.append(Constants.QIX);
@@ -49,7 +49,7 @@ public class ComputeServiceImpl implements ComputeService {
 	@Override
     public List<String> calculateOccurrence(String input) {
     	List<String> recurrences = new ArrayList<>();
-    	int[] nums = {THREE,FIVE};
+    	int[] nums = {THREE,FIVE,SEVEN};
     	for(int n: nums) {
     		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));		
     		if(count > 0) {
