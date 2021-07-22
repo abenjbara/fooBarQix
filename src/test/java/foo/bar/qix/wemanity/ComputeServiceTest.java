@@ -16,7 +16,7 @@ public class ComputeServiceTest {
 	private ComputeService computeService;
 	
 	@Test
-	public void sould_write_foo_when_the_number_is_devisible_by_3(){
+	public void should_write_foo_when_the_number_is_devisible_by_3(){
 		// given
 		String input = "3";
 		
@@ -28,7 +28,7 @@ public class ComputeServiceTest {
 	}
 	
 	@Test
-	public void sould_write_details_when_the_number_is_devisible_by_3(){
+	public void should_write_details_when_the_number_is_devisible_by_3(){
 		String input = "3";
 		String output = computeService.compute(input);
 		
@@ -37,7 +37,7 @@ public class ComputeServiceTest {
 	}
 
 	@Test
-	public void sould_write_bar_when_the_number_is_devisible_by_5(){
+	public void should_write_bar_when_the_number_is_devisible_by_5(){
 		String input = "5";
 		String output = computeService.compute(input);
 		assertThat(output).contains(Constants.BAR);		

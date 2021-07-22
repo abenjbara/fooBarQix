@@ -25,6 +25,11 @@ public class ComputeServiceImpl implements ComputeService {
 			listDetails.add(Constants.DEVISIBLE + 3);
 			listDetails.add(calculateOccurrence(input, "3"));
 		}
+		if(number % 5 == ZERO) {
+			output.append(Constants.BAR);
+			listDetails.add(Constants.DEVISIBLE + 5);
+			listDetails.add(calculateOccurrence(input, "5"));
+		}
 		
 		String result =  output.append(BuildDetails(listDetails)).toString();
 		System.out.println("result:   " + result);
