@@ -1,6 +1,7 @@
 package foo.bar.qix.wemanity.service;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -15,13 +16,14 @@ public class ComputeServiceImpl implements ComputeService {
 	private static final int THREE = 3;
 	private static final int FIVE = 5;
 	private static final int SEVEN = 7;
+	private static final List<Integer> DIVIDERS = Arrays.asList(THREE,FIVE,SEVEN);
 	
 	@Override
 	public String compute(String input) {
 		StringBuilder output = new StringBuilder();
 		List<String> listDetails = new ArrayList<>();
 		int number = Integer.valueOf(input);
-		
+				
 		if(number % THREE == ZERO) {
 			output.append(Constants.FOO);
 			listDetails.add(Constants.DIVISIBLE + 3);
@@ -34,6 +36,7 @@ public class ComputeServiceImpl implements ComputeService {
 			output.append(Constants.QIX);
 			listDetails.add(Constants.DIVISIBLE + 7);
 		}
+		
 		
 		listDetails.addAll(this.calculateOccurrence(input));
 		
@@ -50,8 +53,7 @@ public class ComputeServiceImpl implements ComputeService {
 	@Override
     public List<String> calculateOccurrence(String input) {
     	List<String> recurrences = new ArrayList<>();
-    	int[] nums = {THREE,FIVE,SEVEN};
-    	for(int n: nums) {
+    	for(int n: DIVIDERS) {
     		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));		
     		if(count > 0) {
     			String countString = count > 1 ? count + " " : "";
@@ -70,7 +72,7 @@ public class ComputeServiceImpl implements ComputeService {
 		StringBuilder details = new StringBuilder();
 		
 		if(!listDetails.isEmpty()) {
-			details.append("(");
+			details.append(" (");
 			for(String d: listDetails) {
 				if(!d.isEmpty()) {
 					details.append(d + ",");

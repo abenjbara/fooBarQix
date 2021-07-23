@@ -61,10 +61,17 @@ public class ComputeServiceTest {
 	}
 	
 	@Test
-	public void should_write_devisible_when_the_number_is_divisible_by_7() {
+	public void should_write_divisible_when_the_number_is_divisible_by_7() {
 		String input = "7";
 		String output = computeService.compute(input);	
 		assertThat(output).contains(Constants.DIVISIBLE + input);
+	}
+	
+	@Test
+	public void should_write_the_same_number_when_its_noy_divisible_by_3_5_or_7() {
+		String input = "8";
+		String output = computeService.compute(input);	
+		assertThat(output).isEqualTo(input);
 	}
 	
 }
