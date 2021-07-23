@@ -37,6 +37,10 @@ public class ComputeServiceImpl implements ComputeService {
 			listDetails.add(Constants.DIVISIBLE + 7);
 		}
 		
+		// retourne le meme nombre s'il n'est pas divisible par 3,5 ou 7
+		if(output.isEmpty()) {
+			return input;
+		}
 		
 		listDetails.addAll(this.calculateOccurrence(input));
 		
