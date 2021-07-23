@@ -68,10 +68,17 @@ public class ComputeServiceTest {
 	}
 	
 	@Test
-	public void should_write_the_same_number_when_its_noy_divisible_by_3_5_or_7() {
+	public void should_write_the_same_number_when_its_not_divisible_by_3_5_or_7() {
 		String input = "8";
 		String output = computeService.compute(input);	
 		assertThat(output).isEqualTo(input);
+	}
+	
+	@Test
+	public void should_add_foo_for_each_digit_3() {
+		String input = "3";
+		String output = computeService.compute(input);	
+		assertThat(output).contains(Constants.FOO+Constants.FOO);
 	}
 	
 }
