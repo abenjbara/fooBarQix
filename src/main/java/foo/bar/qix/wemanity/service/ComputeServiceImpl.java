@@ -33,12 +33,12 @@ public class ComputeServiceImpl implements ComputeService {
 			listDetails.add(Constants.DIVISIBLE + 7);
 		}
 		
-		// retourne le meme nombre s'il n'est pas divisible par 3,5 ou 7
+		listDetails.addAll(this.calculateOccurrence(input, output));
+		
+		// sinon on retourne le meme numero
 		if(output.isEmpty()) {
 			return input;
 		}
-		
-		listDetails.addAll(this.calculateOccurrence(input, output));
 		
 		String result =  output.append(BuildDetails(listDetails)).toString();
 		System.out.println("result:   " + result);
@@ -55,8 +55,10 @@ public class ComputeServiceImpl implements ComputeService {
     public List<String> calculateOccurrence(String input, StringBuilder output) {
     	List<String> recurrences = new ArrayList<>();
     	for(int n: Constants.DIVIDERS) {
-    		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));		
+    		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));	
+    		System.out.println(n + "occure " + count + " times");
     		if(count > 0) {
+    			
     			for (int i = 1; i <= count; i++) {
     				output.append(Constants.getStringvalueof(n));
     			}

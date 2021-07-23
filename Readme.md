@@ -21,14 +21,12 @@ Examples:
 6  => Foo (divisible by 3)
 7  => QixQix (divisible by 7, contains 7)
 8  => 8
-9  => Foo
-10 => Bar
-13 => Foo
+9  => Foo (divisible by 3)
+10 => Bar (divisible by 5)
+13 => Foo (contains 3)
 15 => FooBarBar (divisible by 3, divisible by 5, contains 5)
-21 => FooQix
 33 => FooFooFoo (divisible by 3, contains two 3)
-51 => FooBar
-53 => BarFoo
+53 => FooBar (contains 3,contains 5)
  ```
 
 Step 2:  
