@@ -13,9 +13,10 @@ public interface ComputeService {
 
 	/**
 	 * @param input
+	 * @param output 
 	 * @param reference
 	 * @return le nombre d'occurences dans une chaine de caractères
 	 */
-	List<String> calculateOccurrence(String input);
+	List<String> calculateOccurrence(String input, StringBuilder output);
 
 }

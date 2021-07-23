@@ -39,8 +39,9 @@ public class ComputeServiceTest {
 	@Test
 	public void should_calculate_recurrence() {
 		String input = "563";
-		List<String> recurences = computeService.calculateOccurrence(input);
-		
+		StringBuilder output =  new StringBuilder("5");
+		List<String> recurences = computeService.calculateOccurrence(input, output);
+
 		assertThat(recurences).isNotEmpty();
 		assertThat(recurences.size()).isEqualTo(2);
 		assertThat(recurences.get(0)).isEqualTo(Constants.CONTAINS + 3);

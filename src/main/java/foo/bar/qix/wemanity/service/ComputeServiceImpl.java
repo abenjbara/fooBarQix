@@ -1,7 +1,6 @@
 package foo.bar.qix.wemanity.service;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -13,10 +12,7 @@ import foo.bar.qix.wemanity.utils.Constants;
 public class ComputeServiceImpl implements ComputeService {
 
 	private static final int ZERO = 0;
-	private static final int THREE = 3;
-	private static final int FIVE = 5;
-	private static final int SEVEN = 7;
-	private static final List<Integer> DIVIDERS = Arrays.asList(THREE,FIVE,SEVEN);
+
 	
 	@Override
 	public String compute(String input) {
@@ -24,15 +20,15 @@ public class ComputeServiceImpl implements ComputeService {
 		List<String> listDetails = new ArrayList<>();
 		int number = Integer.valueOf(input);
 				
-		if(number % THREE == ZERO) {
+		if(number % Constants.THREE == ZERO) {
 			output.append(Constants.FOO);
 			listDetails.add(Constants.DIVISIBLE + 3);
 		}
-		if(number % FIVE == ZERO) {
+		if(number % Constants.FIVE == ZERO) {
 			output.append(Constants.BAR);
 			listDetails.add(Constants.DIVISIBLE + 5);
 		}
-		if(number % SEVEN == ZERO) {
+		if(number % Constants.SEVEN == ZERO) {
 			output.append(Constants.QIX);
 			listDetails.add(Constants.DIVISIBLE + 7);
 		}
@@ -42,7 +38,7 @@ public class ComputeServiceImpl implements ComputeService {
 			return input;
 		}
 		
-		listDetails.addAll(this.calculateOccurrence(input));
+		listDetails.addAll(this.calculateOccurrence(input, output));
 		
 		String result =  output.append(BuildDetails(listDetails)).toString();
 		System.out.println("result:   " + result);
@@ -51,15 +47,19 @@ public class ComputeServiceImpl implements ComputeService {
 	
 	/**
 	 * @param input
+	 * @param output 
 	 * @param reference
 	 * @return le nombre d'occurences dans une chaine de caractères
 	 */
 	@Override
-    public List<String> calculateOccurrence(String input) {
+    public List<String> calculateOccurrence(String input, StringBuilder output) {
     	List<String> recurrences = new ArrayList<>();
-    	for(int n: DIVIDERS) {
+    	for(int n: Constants.DIVIDERS) {
     		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));		
     		if(count > 0) {
+    			for (int i = 1; i <= count; i++) {
+    				output.append(Constants.getStringvalueof(n));
+    			}
     			String countString = count > 1 ? count + " " : "";
     			recurrences.add(Constants.CONTAINS + countString + String.valueOf(n));
     		}
