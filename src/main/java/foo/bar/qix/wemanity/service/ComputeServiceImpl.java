@@ -40,9 +40,9 @@ public class ComputeServiceImpl implements ComputeService {
 			return input;
 		}
 		
-		String result =  output.append(BuildDetails(listDetails)).toString();
-		System.out.println("result:   " + result);
-		return result;
+		Display(output, listDetails);
+		System.out.println("result:   " + output);
+		return output.toString();
 	}
 	
 	/**
@@ -74,22 +74,20 @@ public class ComputeServiceImpl implements ComputeService {
      * Construit le output a partir d'une liste de String
      * @param listDetails
      */
-	private String BuildDetails(List<String> listDetails) {
-		StringBuilder details = new StringBuilder();
+	@Override
+	public void Display(StringBuilder output, List<String> listDetails) {
 		
 		if(!listDetails.isEmpty()) {
-			details.append(" (");
+			output.append(" (");
 			for(String d: listDetails) {
 				if(!d.isEmpty()) {
-					details.append(d + ",");
+					output.append(d + ",");
 				}
-			}
+			}			
+			output.deleteCharAt(output.length() -1); // suppression de la derniere virgule
 			
-			details.deleteCharAt(details.length() -1); // suppression de la derniere virgule
-			
-			details.append(")");
+			output.append(")");
 		}
-		return details.toString();
 	}
 	
 }

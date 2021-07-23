@@ -19,4 +19,10 @@ public interface ComputeService {
 	 */
 	List<String> calculateOccurrence(String input, StringBuilder output);
 
+	/**
+	 * Construit le output a partir d'une liste de String
+	 * @param listDetails
+	 */
+	void Display(StringBuilder output, List<String> listDetails);
+
 }
