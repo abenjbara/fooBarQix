@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 
 import foo.bar.qix.wemanity.utils.Constants;
+import foo.bar.qix.wemanity.utils.InvalidInputException;
 
 @Service
 public class ComputeServiceImpl implements ComputeService {
@@ -14,7 +15,14 @@ public class ComputeServiceImpl implements ComputeService {
 	@Override
 	public String compute(String input) {
 		StringBuilder output = new StringBuilder();
-		int number = Integer.valueOf(input);
+		int number ; 
+		
+		try {
+			number = Integer.valueOf(input);
+		} catch (NumberFormatException e) {
+			throw new InvalidInputException(input + " is not a number");
+		}
+		
 				
 		if(number % Constants.THREE == ZERO) {
 			output.append(Constants.FOO);
