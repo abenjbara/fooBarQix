@@ -23,6 +23,6 @@ public interface ComputeService {
 	 * @param output
 	 * @return 
 	 */
-	String replaceZeros(String input, String output);
+	String replaceZeros(String reference, StringBuilder output);
 
 }

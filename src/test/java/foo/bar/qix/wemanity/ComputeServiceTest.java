@@ -68,21 +68,20 @@ public class ComputeServiceTest {
 	
 	@Test
 	public void should_trace_zero_when_input_is_number() {
-		String input = "1001";
-		String output = input;
-		output = computeService.replaceZeros(input, output);
+		String reference = "1001";
+		StringBuilder output =  new StringBuilder(reference); 
+		String result = computeService.replaceZeros(reference, output);
 		
-		assertThat(output).isEqualTo("1**1");
-		assertThat(StringUtils.countOccurrencesOf(output, "*")).isEqualTo(2l);
+		assertThat(result).isEqualTo("1**1");
+		assertThat(StringUtils.countOccurrencesOf(result, "*")).isEqualTo(2l);
 	}
 	
 	@Test
 	public void should_trace_zero_when_input_is_not_number() {
-		String input = "1001";
-		String output = "FooBarQix";
-		output = computeService.replaceZeros(input, output);
-		System.out.println("ouput est " + output);
-		assertThat(StringUtils.countOccurrencesOf(output, "*")).isEqualTo(2l);
+		String reference = "1001";
+		StringBuilder output = new StringBuilder("FooBarQix");
+		String result = computeService.replaceZeros(reference, output);
+		assertThat(StringUtils.countOccurrencesOf(result, "*")).isEqualTo(2l);
 	}
 	
 	

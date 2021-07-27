@@ -19,13 +19,14 @@ public class ComputeServiceImpl implements ComputeService {
 		StringBuilder output = new StringBuilder();
 		int number ; 
 		
+		// making sure we have correct input format
 		try {
 			number = Integer.valueOf(input);
 		} catch (NumberFormatException e) {
 			throw new InvalidInputException(input + " is not a number");
 		}
 		
-				
+		// check if divisible		
 		if(number % Constants.THREE == ZERO) {
 			output.append(Constants.FOO);
 		}
@@ -38,13 +39,12 @@ public class ComputeServiceImpl implements ComputeService {
 		
 		output.append(this.getOccurrences(input));
 		
-		// sinon on retourne le meme numero
+		// otherwise we keep the same input
 		if(output.isEmpty()) {
-			return input;
+			output = new StringBuilder(input);
 		}
 		
-		System.out.println("result:   " + output);
-		return output.toString();
+		return replaceZeros(input, output);
 	}
 	
 	
@@ -75,17 +75,18 @@ public class ComputeServiceImpl implements ComputeService {
 
 
 	@Override
-	public String replaceZeros(String reference, String output) {
+	public String replaceZeros(String reference, StringBuilder output) {
 		try {
 		  // throws exception if the output isn't a number
-		  Integer.parseInt(output);
-		  return output.replaceAll("0", "*");
+		  Integer.parseInt(output.toString());
+		  return output.toString().replaceAll("0", "*");
 		} catch (NumberFormatException nfe) {
-			long count = StringUtils.countOccurrencesOf(reference, "0");		
-			for (int i = 1; i <= count; i++) {
-				output = output + "*";
-			}	
-			return output;
+			reference.codePoints()
+					 .mapToObj(r -> (char) r)
+					 .filter(r -> r == '0')
+					 .forEach(r -> output.append("*"));
+			
+			return output.toString();
 		}
 		
 	}
