@@ -70,8 +70,8 @@ public class ComputeServiceTest {
 	public void should_trace_zero_when_input_is_number() {
 		String input = "1001";
 		String output = input;
-		computeService.replaceZeros(input, output);
-		long count = StringUtils.countOccurrencesOf(input, "*");
+		output = computeService.replaceZeros(input, output);
+		long count = StringUtils.countOccurrencesOf(output, "*");
 		assertThat(count).isEqualTo(2l);
 	}
 	

@@ -21,7 +21,8 @@ public interface ComputeService {
 	 * replace each 0 in the output by '*'
 	 * @param input
 	 * @param output
+	 * @return 
 	 */
-	void replaceZeros(String input, String output);
+	String replaceZeros(String input, String output);
 
 }

@@ -1,6 +1,7 @@
 package foo.bar.qix.wemanity.service;
 
 import org.springframework.stereotype.Service;
+import org.springframework.util.NumberUtils;
 import org.springframework.util.StringUtils;
 
 import foo.bar.qix.wemanity.utils.Constants;
@@ -75,8 +76,14 @@ public class ComputeServiceImpl implements ComputeService {
 
 
 	@Override
-	public void replaceZeros(String input, String output) {
-		
+	public String replaceZeros(String input, String output) {
+		try {
+		  // throws exception if the output isn't a number
+		  Integer.parseInt(output);
+		  return output.replaceAll("0", "*");
+		} catch (NumberFormatException nfe) {
+			return null;
+		}
 		
 	}
 	
