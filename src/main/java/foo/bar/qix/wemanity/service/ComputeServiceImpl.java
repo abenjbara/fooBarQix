@@ -1,5 +1,6 @@
 package foo.bar.qix.wemanity.service;
 
+import org.hibernate.result.Output;
 import org.springframework.stereotype.Service;
 import org.springframework.util.NumberUtils;
 import org.springframework.util.StringUtils;
@@ -64,25 +65,27 @@ public class ComputeServiceImpl implements ComputeService {
     public StringBuilder getOccurrences(String input) {
 		StringBuilder output = new StringBuilder();
     	for(int n: Constants.DIVIDERS) {
-    		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));	
-    		if(count > 0) {		
-    			for (int i = 1; i <= count; i++) {
-    				output.append(getStringvalueof(n));
-    			}			
-    		}
+    		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));		
+			for (int i = 1; i <= count; i++) {
+				output.append(getStringvalueof(n));
+			}			
     	}    
     	return output;
 	}
 
 
 	@Override
-	public String replaceZeros(String input, String output) {
+	public String replaceZeros(String reference, String output) {
 		try {
 		  // throws exception if the output isn't a number
 		  Integer.parseInt(output);
 		  return output.replaceAll("0", "*");
 		} catch (NumberFormatException nfe) {
-			return null;
+			long count = StringUtils.countOccurrencesOf(reference, "0");		
+			for (int i = 1; i <= count; i++) {
+				output = output + "*";
+			}	
+			return output;
 		}
 		
 	}

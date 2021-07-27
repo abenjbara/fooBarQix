@@ -81,6 +81,7 @@ public class ComputeServiceTest {
 		String input = "1001";
 		String output = "FooBarQix";
 		output = computeService.replaceZeros(input, output);
+		System.out.println("ouput est " + output);
 		assertThat(StringUtils.countOccurrencesOf(output, "*")).isEqualTo(2l);
 	}
 	
