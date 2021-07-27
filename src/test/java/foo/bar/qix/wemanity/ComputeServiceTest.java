@@ -71,8 +71,17 @@ public class ComputeServiceTest {
 		String input = "1001";
 		String output = input;
 		output = computeService.replaceZeros(input, output);
-		long count = StringUtils.countOccurrencesOf(output, "*");
-		assertThat(count).isEqualTo(2l);
+		
+		assertThat(output).isEqualTo("1**1");
+		assertThat(StringUtils.countOccurrencesOf(output, "*")).isEqualTo(2l);
+	}
+	
+	@Test
+	public void should_trace_zero_when_input_is_not_number() {
+		String input = "1001";
+		String output = "FooBarQix";
+		output = computeService.replaceZeros(input, output);
+		assertThat(StringUtils.countOccurrencesOf(output, "*")).isEqualTo(2l);
 	}
 	
 	
