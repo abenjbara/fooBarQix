@@ -13,8 +13,15 @@ public interface ComputeService {
 	 * @param input
 	 * @param output 
 	 * @param reference
-	 * @return le nombre d'occurences dans une chaine de caractères
+	 * @return “Foo”, “Bar”, “Qix” pour chaque nombre 3,5, 7
 	 */
-	StringBuilder calculateOccurrence(String input);
+	StringBuilder getOccurrences(String input);
+
+	/**
+	 * replace each 0 in the output by '*'
+	 * @param input
+	 * @param output
+	 */
+	void replaceZeros(String input, String output);
 
 }

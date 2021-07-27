@@ -34,7 +34,7 @@ public class ComputeServiceImpl implements ComputeService {
 			output.append(Constants.QIX);
 		}
 		
-		output.append(this.calculateOccurrence(input));
+		output.append(this.getOccurrences(input));
 		
 		// sinon on retourne le meme numero
 		if(output.isEmpty()) {
@@ -45,27 +45,22 @@ public class ComputeServiceImpl implements ComputeService {
 		return output.toString();
 	}
 	
+	
 	private String getStringvalueof(Integer number) {
 		switch (number) {
-		case Constants.THREE:
-			return Constants.FOO;
-		case Constants.FIVE:
-			return Constants.BAR; 	
-		case Constants.SEVEN:
-			return Constants.QIX;
-	
+			case Constants.THREE:
+				return Constants.FOO;
+			case Constants.FIVE:
+				return Constants.BAR; 	
+			case Constants.SEVEN:
+				return Constants.QIX;
 		}
 		return null;
 	}
 	
-	/**
-	 * @param input
-	 * @param output 
-	 * @param reference
-	 * @return le nombre d'occurences dans une chaine de caractères
-	 */
+	
 	@Override
-    public StringBuilder calculateOccurrence(String input) {
+    public StringBuilder getOccurrences(String input) {
 		StringBuilder output = new StringBuilder();
     	for(int n: Constants.DIVIDERS) {
     		long count = StringUtils.countOccurrencesOf(input, String.valueOf(n));	
@@ -76,6 +71,13 @@ public class ComputeServiceImpl implements ComputeService {
     		}
     	}    
     	return output;
+	}
+
+
+	@Override
+	public void replaceZeros(String input, String output) {
+		
+		
 	}
 	
 }

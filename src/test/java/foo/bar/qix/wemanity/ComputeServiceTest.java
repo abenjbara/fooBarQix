@@ -5,6 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.StringUtils;
 
 import foo.bar.qix.wemanity.service.ComputeService;
 import foo.bar.qix.wemanity.utils.Constants;
@@ -30,7 +31,7 @@ public class ComputeServiceTest {
 	@Test
 	public void should_calculate_recurrence() {
 		String input = "563";
-		StringBuilder output = computeService.calculateOccurrence(input);
+		StringBuilder output = computeService.getOccurrences(input);
 
 		assertThat(output).isNotEmpty();
 		assertThat(output.toString()).isEqualTo(Constants.FOO+Constants.BAR);
@@ -64,5 +65,15 @@ public class ComputeServiceTest {
 		String output = computeService.compute(input);	
 		assertThat(output).contains(Constants.FOO+Constants.FOO);
 	}
+	
+	@Test
+	public void should_trace_zero_when_input_is_number() {
+		String input = "1001";
+		String output = input;
+		computeService.replaceZeros(input, output);
+		long count = StringUtils.countOccurrencesOf(input, "*");
+		assertThat(count).isEqualTo(2l);
+	}
+	
 	
 }
