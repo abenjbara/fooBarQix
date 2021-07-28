@@ -1,28 +1,32 @@
 package foo.bar.qix.wemanity.service;
 
-public interface ComputeService {
+import java.util.Arrays;
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import foo.bar.qix.wemanity.utils.InvalidInputException;
+
+@Service
+public class ComputeService {
 
 	/**
-	 * 
 	 * @param input
 	 * @return une chaine de caractère en fonction du input
 	 */
-	String compute(String input);
-
-	/**
-	 * @param input
-	 * @param output 
-	 * @param reference
-	 * @return “Foo”, “Bar”, “Qix” pour chaque nombre 3,5, 7
-	 */
-	StringBuilder getOccurrences(String input);
-
-	/**
-	 * replace each 0 in the output by '*'
-	 * @param input
-	 * @param output
-	 * @return 
-	 */
-	String replaceZeros(String reference, StringBuilder output);
-
+	public String compute(String input) throws InvalidInputException {
+		
+		List<Operation> operations = Arrays.asList(new ByThree(),new ByFive(), new BySeven());
+		
+		Compute compute = new Compute(input,operations);
+		
+		compute.computeDivisible();
+		
+		compute.computeOccurrences();
+		
+		compute.checkOuput();
+				
+		return compute.replaceZeros();
+	}	
+	
 }
