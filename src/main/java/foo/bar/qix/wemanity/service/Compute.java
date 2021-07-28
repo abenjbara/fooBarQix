@@ -72,4 +72,13 @@ public class Compute {
 		}
 	}
 	
+	// Getters and Setters
+	public StringBuilder getOutput() {
+		return output;
+	}
+
+	public void setOutput(StringBuilder output) {
+		this.output = output;
+	}
+	
 }

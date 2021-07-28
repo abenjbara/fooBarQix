@@ -5,59 +5,22 @@ import static org.assertj.core.api.Assertions.assertThat;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.util.StringUtils;
 
 import foo.bar.qix.wemanity.service.ComputeService;
 import foo.bar.qix.wemanity.utils.Constants;
 
+/**
+ * 
+ * @author abenjbara
+ * 
+ * Integration tests
+ */
 @SpringBootTest
 public class ComputeServiceTest {
 	
 	@Autowired
 	private ComputeService computeService;
 	
-	@Test
-	public void should_write_foo_when_the_number_is_divisible_by_3(){
-		// given
-		String input = "3";
-		
-		// when
-		String output = computeService.compute(input);
-		
-		// then
-		assertThat(output).contains(Constants.FOO);		
-	}
-	
-	@Test
-	public void should_calculate_recurrence() {
-		String input = "563";
-		String output = computeService.compute(input);
-
-		assertThat(output).isNotEmpty();
-		assertThat(output).isEqualTo(Constants.FOO+Constants.BAR);
-	}
-
-	@Test
-	public void should_write_bar_when_the_number_is_divisible_by_5(){
-		String input = "5";
-		String output = computeService.compute(input);
-		assertThat(output).contains(Constants.BAR);		
-	}
-	
-	@Test
-	public void should_write_qix_when_the_number_is_divisible_by_7() {
-		String input = "7";
-		String output = computeService.compute(input);
-		assertThat(output).contains(Constants.QIX);
-	}
-	
-	
-	@Test
-	public void should_write_the_same_number_when_its_not_divisible_by_3_5_or_7() {
-		String input = "8";
-		String output = computeService.compute(input);	
-		assertThat(output).isEqualTo(input);
-	}
 	
 	@Test
 	public void should_add_foo_for_each_digit_3() {
@@ -65,24 +28,5 @@ public class ComputeServiceTest {
 		String output = computeService.compute(input);	
 		assertThat(output).contains(Constants.FOO+Constants.FOO);
 	}
-	
-	/** @Test
-	public void should_trace_zero_when_input_is_number() {
-		String reference = "1001";
-		StringBuilder output =  new StringBuilder(reference); 
-		String result = computeService.replaceZeros(reference, output);
-		
-		assertThat(result).isEqualTo("1**1");
-		assertThat(StringUtils.countOccurrencesOf(result, "*")).isEqualTo(2l);
-	}
-	
-	@Test
-	public void should_trace_zero_when_input_is_not_number() {
-		String reference = "1001";
-		StringBuilder output = new StringBuilder("FooBarQix");
-		String result = computeService.replaceZeros(reference, output);
-		assertThat(StringUtils.countOccurrencesOf(result, "*")).isEqualTo(2l);
-	}
-	**/
 	
 }
