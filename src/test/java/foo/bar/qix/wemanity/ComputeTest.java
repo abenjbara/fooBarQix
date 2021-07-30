@@ -9,10 +9,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.util.StringUtils;
 
-import foo.bar.qix.wemanity.service.ByFive;
-import foo.bar.qix.wemanity.service.BySeven;
-import foo.bar.qix.wemanity.service.ByThree;
 import foo.bar.qix.wemanity.service.Compute;
+import foo.bar.qix.wemanity.service.ContainsStrategy;
+import foo.bar.qix.wemanity.service.DivisionStrategy;
 import foo.bar.qix.wemanity.service.Operation;
 import foo.bar.qix.wemanity.utils.Constants;
 
@@ -25,27 +24,19 @@ import foo.bar.qix.wemanity.utils.Constants;
 @SpringBootTest
 public class ComputeTest {
 	
-	List<Operation> operations = Arrays.asList(new ByThree(),new ByFive(), new BySeven());
+	Operation byThree = new Operation(Constants.FOO, "3");
+	Operation byFive = new Operation(Constants.BAR, "5");
+	Operation bySeven = new Operation(Constants.QIX, "7");
 	
-	@Test
-	public void should_write_foo_when_the_number_is_divisible_by_3(){
-		// given
-		String input = "3";
-		Compute compute = new Compute(input,operations);
-		
-		//when
-		compute.computeDivisible();
-		
-		// then
-		assertThat(compute.getOutput()).contains(Constants.FOO);		
-	}
+	List<Operation> operations = Arrays.asList(byThree, byFive, bySeven);
+	
 	
 	@Test
 	public void should_calculate_recurrence() {
 		String input = "563";
 		Compute compute = new Compute(input,operations);
 
-		compute.computeOccurrences();
+		compute.processCompute(new ContainsStrategy());
 		
 		assertThat(compute.getOutput()).isNotEmpty();
 		assertThat(compute.getOutput().toString()).isEqualTo(Constants.FOO+Constants.BAR);
@@ -56,23 +47,13 @@ public class ComputeTest {
 		String input = "5";
 		Compute compute = new Compute(input,operations);		
 		
-		compute.computeDivisible();
+		compute.processCompute(new DivisionStrategy());
 		
 		String output = compute.getOutput().toString();
 		assertThat(output).contains(Constants.BAR);
 		assertThat(output).doesNotContain(Constants.FOO);
 	}
 	
-	@Test
-	public void should_write_qix_when_the_number_is_divisible_by_7() {
-		String input = "7";
-		Compute compute = new Compute(input,operations);		
-		
-		compute.computeDivisible();
-		
-		String output = compute.getOutput().toString();
-		assertThat(output).contains(Constants.QIX);
-	}
 	
 	@Test
 	public void should_write_the_same_number_when_its_not_divisible_by_3_5_or_7() {
