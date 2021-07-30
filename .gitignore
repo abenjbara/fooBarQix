@@ -18,4 +18,5 @@
 *.jar
 
 ### Maven ###
+bin/
 target/
