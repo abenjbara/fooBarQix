@@ -1,31 +1,31 @@
 package foo.bar.qix.wemanity.service;
 
-import org.springframework.util.StringUtils;
-
-
 public class Operation {
 	
-	protected String index;
-	
-	protected String value;
-	
-	public StringBuilder getOccurrences(String input) {
-		StringBuilder recurrence = new StringBuilder();
-		long count = StringUtils.countOccurrencesOf(input, this.value);		
-		for (int i = 1; i <= count; i++) {
-			recurrence.append(this.index);
-		}
-		return recurrence;
+	private String index;
+	private String value;
+
+	public Operation(String index, String value) {
+		super();
+		this.index = index;
+		this.value = value;
 	}
-	
-	public String checkDivisible(Integer input) {
-		String div = "";
-		if(input % Integer.valueOf(this.value) == 0) {
-			div = this.index;
-		}
-		return div;
+
+	public String getIndex() {
+		return index;
 	}
-	
+
+	public void setIndex(String index) {
+		this.index = index;
+	}
+
+	public String getValue() {
+		return value;
+	}
+
+	public void setValue(String value) {
+		this.value = value;
+	}		
 	
 	
 }

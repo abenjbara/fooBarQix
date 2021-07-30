@@ -13,35 +13,26 @@ public class Compute {
 	
 	public Compute(String input, List<Operation> operations) {
 		super();
+		
+		// making sure we have correct input format
+		try {
+			Integer.valueOf(input);
+		} catch (NumberFormatException e) {
+			throw new InvalidInputException(input + " is not a number");
+		}
+	
 		this.input = input;
 		this.output = new StringBuilder();
 		this.operations = new ArrayList<>(operations);
 	}
 	
 	/**
-	 * check if the operation is divisible
-	 * @throws InvalidInputException
+	 * Use strategy design pattern
+	 * @param strategy
 	 */
-	public void computeDivisible() throws InvalidInputException {
-		Integer number;
-		// making sure we have correct input format
-		try {
-			number = Integer.valueOf(input);
-		} catch (NumberFormatException e) {
-			throw new InvalidInputException(input + " is not a number");
-		}
-				
+	public void processCompute(Strategy strategy) {
 		for(Operation op: operations) {
-			output.append(op.checkDivisible(number));
-		}
-	}
-	
-	/**
-	 * update the operation output if it's contains occurrences
-	 */
-	public void computeOccurrences() {
-		for(Operation op: operations) {
-			output.append(op.getOccurrences(input));
+			this.output.append(strategy.compute(input, op));
 		}
 	}
 	
@@ -72,7 +63,7 @@ public class Compute {
 		}
 	}
 	
-	// Getters and Setters
+	//   		-------   Getters and Setters   --------
 	public StringBuilder getOutput() {
 		return output;
 	}

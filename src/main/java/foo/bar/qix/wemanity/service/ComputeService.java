@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
+import foo.bar.qix.wemanity.utils.Constants;
 import foo.bar.qix.wemanity.utils.InvalidInputException;
 
 @Service
@@ -16,13 +17,17 @@ public class ComputeService {
 	 */
 	public String compute(String input) throws InvalidInputException {
 		
-		List<Operation> operations = Arrays.asList(new ByThree(),new ByFive(), new BySeven());
+		Operation byThree = new Operation(Constants.FOO, "3");
+		Operation byFive = new Operation(Constants.BAR, "5");
+		Operation bySeven = new Operation(Constants.QIX, "7");
+		
+		List<Operation> operations = Arrays.asList(byThree, byFive, bySeven);
 		
 		Compute compute = new Compute(input,operations);
 		
-		compute.computeDivisible();
+		compute.processCompute(new DivisionStrategy());
 		
-		compute.computeOccurrences();
+		compute.processCompute(new ContainsStrategy());
 		
 		compute.checkOuput();
 				
